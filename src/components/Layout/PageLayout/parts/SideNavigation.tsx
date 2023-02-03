@@ -1,12 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
+import { HomeIcon, FolderIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 export const SideNavigation = () => {
   const navigation = [
-    { name: 'Dashboard', to: '.' },
-    { name: 'Discussions', to: './discussions' },
+    { name: 'Dashboard', to: '.', icon: HomeIcon },
+    { name: 'Discussions', to: './discussions', icon: FolderIcon },
     // TODO: Authentication: admin users only
-    { name: 'Users', to: './users' },
+    { name: 'Users', to: './users', icon: UsersIcon },
   ];
 
   return (
@@ -24,6 +25,13 @@ export const SideNavigation = () => {
             )
           }
         >
+          <item.icon
+            className={clsx(
+              'text-gray-400 group-hover:text-gray-300',
+              'mr-4 flex-shrink-0 h-6 w-6'
+            )}
+            aria-hidden="true"
+          />
           {item.name}
         </NavLink>
       ))}
