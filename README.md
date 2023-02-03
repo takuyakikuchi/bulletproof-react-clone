@@ -22,3 +22,7 @@ To be updated...
 - Build tool: Vite
 - Language: TypeScript
 - Framework: React
+- Package manager: Yarn
+- Linter: ESLint
+- Formatter: Prettier
+- Git hooks: husky & lint-staged
