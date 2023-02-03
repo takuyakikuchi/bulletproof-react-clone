@@ -1,5 +1,4 @@
-import { Logo } from './Logo';
-import { SideNavigation } from './SideNavigation';
+import { Logo, SideNavigation } from '.';
 
 export const Sidebar = () => {
   return (
