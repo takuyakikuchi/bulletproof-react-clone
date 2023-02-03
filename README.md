@@ -12,6 +12,7 @@ The original repository: https://github.com/alan2207/bulletproof-react
 Basically, the original repository is used as it is, but any changes are noted here.
 
 - Instead of creating the app with "create react app", I used Vite.
+- The settings around routing are configured in the way recommended by the latest version at the time of implementation.
 
 ## Functionality
 
@@ -28,3 +29,5 @@ To be updated...
 - Git hooks: husky & lint-staged
 - Style: Tailwind CSS
 - UI library: Headless UI
+- Router: React Router
+
