@@ -26,3 +26,5 @@ To be updated...
 - Linter: ESLint
 - Formatter: Prettier
 - Git hooks: husky & lint-staged
+- Style: Tailwind CSS
+- UI library: Headless UI
