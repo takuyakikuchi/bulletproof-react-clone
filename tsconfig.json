@@ -14,7 +14,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    // ============ Set up path alias ============
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    // ===========================================
+    "types": ["node"]
+    
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
