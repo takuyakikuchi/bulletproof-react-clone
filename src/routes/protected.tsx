@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import { PageLayout } from '../components/Layout/PageLayout/PageLayout';
 
 const App = () => {
   return (
-    <div>
+    <PageLayout>
       <Outlet />
-    </div>
+    </PageLayout>
   );
 };
 

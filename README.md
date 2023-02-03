@@ -30,4 +30,7 @@ To be updated...
 - Style: Tailwind CSS
 - UI library: Headless UI
 - Router: React Router
+- Icon library: Heroicons
+- Utility library: 
+  - clsx
 
