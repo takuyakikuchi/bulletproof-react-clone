@@ -9,10 +9,12 @@ The original repository: https://github.com/alan2207/bulletproof-react
 
 ## Changes from the original repository
 
-Basically, the original repository is used as it is, but any changes are noted here.
+As for the project design, I referred to the original repository and kept it mostly to learn from it.
+However, I picked different tools for what I think is better option at the time of implementation.(See the "Tech Selection" section below)
+Also, I used the latest version of the tools, so there are some differences from the original repository for how to use the third party libraries.
 
 - Instead of creating the app with "create react app", I used Vite.
-- The settings around routing are configured in the way recommended by the latest version at the time of implementation.
+- I added Chromatic to deploy Storybook.
 
 ## Functionality
 
@@ -34,4 +36,6 @@ To be updated...
 - Utility library: 
   - clsx
 - Storybook
+- Test:
+  - VRT: Chromatic
 
