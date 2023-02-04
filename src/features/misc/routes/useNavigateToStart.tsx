@@ -9,7 +9,8 @@ export const useNavigateToStart = () => {
 
   const navigateToStart = () => {
     // TODO: Only authenticated user is navigated to the app.
-    navigate('/app');
+    // navigate('/app');
+    navigate('/auth/login');
   };
 
   return navigateToStart;
