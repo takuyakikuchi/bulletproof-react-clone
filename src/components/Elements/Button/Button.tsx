@@ -25,6 +25,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 } & IconProps;
 
 export const Button = ({
+  // Specific attributes to this button components.
   type = 'button',
   variant = 'primary',
   size = 'md',
@@ -32,7 +33,7 @@ export const Button = ({
   isLoading = false,
   startIcon,
   endIcon,
-  children,
+  // Common button attributes are received as rest parameters.
   ...props
 }: Props) => {
   return (
@@ -51,7 +52,7 @@ export const Button = ({
     >
       {isLoading && <Spinner size="sm" className="text-current" />}
       {!isLoading && startIcon}
-      <span className="mx-2">{children}</span>
+      <span className="mx-2">{props.children}</span>
       {!isLoading && endIcon}
     </button>
   );
