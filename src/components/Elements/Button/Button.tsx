@@ -45,9 +45,9 @@ export const Button = ({
         'disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none hover:opacity-80',
         variants[variant],
         sizes[size],
-        className,
-        { ...props }
+        className
       )}
+      {...props}
     >
       {isLoading && <Spinner size="sm" className="text-current" />}
       {!isLoading && startIcon}
