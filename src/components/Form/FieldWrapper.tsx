@@ -1,7 +1,9 @@
 import clsx from 'clsx';
+import { FieldError } from 'react-hook-form';
 
 type Props = {
   label?: string;
+  error?: FieldError;
   className?: string;
   children: React.ReactNode;
 };
@@ -13,6 +15,7 @@ export type FieldWrapperPassThroughProps = Omit<
 
 export const FieldWrapper = ({
   label = '',
+  error,
   className = '',
   children,
 }: Props) => {
@@ -24,7 +27,15 @@ export const FieldWrapper = ({
         {label}
         <div className="mt-1">{children}</div>
       </label>
-      {/* TODO: Error handling */}
+      {error?.message && (
+        <div
+          role="alert"
+          aria-label={error.message}
+          className="text-sm font-semibold text-red-500"
+        >
+          {error.message}
+        </div>
+      )}
     </div>
   );
 };

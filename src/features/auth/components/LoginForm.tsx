@@ -24,14 +24,13 @@ export const LoginForm = () => {
             <InputField
               type="email"
               label="Email Address"
-              // TODO: Error handling
-              // error={formState.errors['email']}
+              error={formState.errors.email}
               registration={register('email')}
             />
             <InputField
               type="password"
               label="Password"
-              // error={formState.errors['email']}
+              error={formState.errors.password}
               registration={register('password')}
             />
             <div>

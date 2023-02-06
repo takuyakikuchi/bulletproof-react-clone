@@ -12,10 +12,11 @@ export const InputField = ({
   type = 'text',
   className = '',
   label,
+  error,
   registration,
 }: Props) => {
   return (
-    <FieldWrapper label={label}>
+    <FieldWrapper label={label} error={error}>
       <input
         type={type}
         className={clsx(
