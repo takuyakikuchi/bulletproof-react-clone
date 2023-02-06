@@ -640,6 +640,10 @@ video {
   width: 16rem;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
 .max-w-7xl {
   max-width: 80rem;
 }

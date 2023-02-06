@@ -1,4 +1,9 @@
-import { Login } from '@/features/auth/routes';
+import { namedLazyImport } from '@/utils/namedLazyImport';
+
+const { Login } = namedLazyImport(
+  () => import('@/features/auth/routes/Login'),
+  'Login'
+);
 
 export const publicRoutes = [
   {
