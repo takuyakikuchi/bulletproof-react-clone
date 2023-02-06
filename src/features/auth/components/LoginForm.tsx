@@ -7,14 +7,15 @@ const loginSchema = z.object({
   password: z.string().min(8),
 });
 
+type LoginValues = z.infer<typeof loginSchema>;
+
 export const LoginForm = () => {
   return (
     <div>
-      <Form<typeof loginSchema>
-        // TODO: Console log the form state.
+      <Form<LoginValues, typeof loginSchema>
         // TODO: onSuccess
-        onSubmit={() => {
-          console.log('Submitted!');
+        onSubmit={(values) => {
+          console.log(values);
         }}
         schema={loginSchema}
       >
