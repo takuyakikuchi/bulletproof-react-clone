@@ -23,10 +23,13 @@
   "dependencies": {
     "@headlessui/react": "^1.7.8",
     "@heroicons/react": "^2.0.14",
+    "@hookform/resolvers": "^2.9.10",
     "clsx": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0"
+    "react-hook-form": "^7.43.0",
+    "react-router-dom": "^6.8.0",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.0-beta.42",
