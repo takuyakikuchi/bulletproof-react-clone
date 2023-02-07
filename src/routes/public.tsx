@@ -4,11 +4,18 @@ const { Login } = namedLazyImport(
   () => import('@/features/auth/routes/Login'),
   'Login'
 );
+const { Register } = namedLazyImport(
+  () => import('@/features/auth/routes/Register'),
+  'Register'
+);
 
 export const publicRoutes = [
   {
     path: '/auth/login',
     element: <Login />,
   },
-  // TODO: Add register route.
+  {
+    path: '/auth/register',
+    element: <Register />,
+  },
 ];

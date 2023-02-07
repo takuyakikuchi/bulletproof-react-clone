@@ -3,25 +3,42 @@ import { z } from 'zod';
 import { Button } from '@/components/Elements';
 import { Link } from 'react-router-dom';
 
-const loginSchema = z.object({
+const registerSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
+  firstName: z.string(),
+  lastName: z.string(),
+  // teamId: z.string().optional(),
+  // teamName: z.string().optional(),
 });
 
-type LoginValues = z.infer<typeof loginSchema>;
+type RegisterValues = z.infer<typeof registerSchema>;
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   return (
     <div>
-      <Form<LoginValues, typeof loginSchema>
-        // TODO: onSuccess
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-        schema={loginSchema}
+      <Form<RegisterValues, typeof registerSchema>
+        onSubmit={(values) => console.log(values)}
+        schema={registerSchema}
+        // TODO: Uncomment when this option is needed.
+        // options={{
+        //   shouldUnregister: true,
+        // }}
       >
         {({ register, formState }) => (
           <>
+            <InputField
+              type="text"
+              label="First Name"
+              error={formState.errors.firstName}
+              registration={register('firstName')}
+            />
+            <InputField
+              type="text"
+              label="Last Name"
+              error={formState.errors.lastName}
+              registration={register('lastName')}
+            />
             <InputField
               type="email"
               label="Email Address"
@@ -34,9 +51,11 @@ export const LoginForm = () => {
               error={formState.errors.password}
               registration={register('password')}
             />
+            {/* TODO: Add team setting */}
             <div>
+              {/* TODO: add `isLoading` */}
               <Button type="submit" className="w-full">
-                Login
+                Register
               </Button>
             </div>
           </>
@@ -45,10 +64,10 @@ export const LoginForm = () => {
       <div className="mt-2 flex items-center justify-end">
         <div className="text-sm">
           <Link
-            to="/auth/register"
+            to="/auth/login"
             className="font-medium text-blue-600 hover:text-blue-500"
           >
-            Register
+            Log in
           </Link>
         </div>
       </div>
