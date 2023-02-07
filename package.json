@@ -71,5 +71,8 @@
     "*.+(ts|tsx)": [
       "yarn lint"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
