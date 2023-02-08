@@ -1,5 +1,8 @@
 import { Spinner } from '@/components/Elements';
 import { Suspense } from 'react';
+import { queryClient } from '@/lib/query';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 type Props = {
   children: React.ReactNode;
@@ -15,7 +18,10 @@ export const AppProvider = ({ children }: Props) => {
       }
     >
       {/* TODO: Error boundary */}
-      {children}
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        {children}
+      </QueryClientProvider>
     </Suspense>
   );
 };
