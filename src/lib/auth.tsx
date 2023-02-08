@@ -7,8 +7,10 @@
 import { configureAuth } from 'react-query-auth';
 import {
   RegisterCredentials,
+  LoginCredentials,
   UserResponse,
   registerWithEmailAndPassword,
+  loginWithEmailAndPassword,
 } from '@/features/auth';
 import { storage } from '@/utils/storage';
 
@@ -32,10 +34,9 @@ async function userFn() {
   // return null;
 }
 
-async function loginFn() {
-  // const response = await loginWithEmailAndPassword(data);
-  // const user = await handleUserResponse(response);
-  // return user;
+async function loginFn(data: LoginCredentials) {
+  const response = await loginWithEmailAndPassword(data);
+  handleUserResponse(response.data);
 }
 
 async function registerFn(data: RegisterCredentials) {

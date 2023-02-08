@@ -1,22 +1,20 @@
 import { Form, InputField } from '@/components/Form';
-import { z } from 'zod';
 import { Button } from '@/components/Elements';
 import { Link } from 'react-router-dom';
-
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-});
-
-type LoginValues = z.infer<typeof loginSchema>;
+import { loginSchema, LoginCredentials } from '../types';
+import { useLogin } from '@/lib/auth';
 
 export const LoginForm = () => {
+  const login = useLogin();
+
   return (
     <div>
-      <Form<LoginValues, typeof loginSchema>
-        // TODO: onSuccess
+      <Form<LoginCredentials, typeof loginSchema>
         onSubmit={(values) => {
-          console.log(values);
+          login.mutate(values, {
+            // TODO: Redirect to the home onSuccess.
+            onSuccess: () => console.log('logged in'),
+          });
         }}
         schema={loginSchema}
       >
