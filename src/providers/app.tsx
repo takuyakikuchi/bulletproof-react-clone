@@ -1,8 +1,8 @@
 import { Spinner } from '@/components/Elements';
 import { Suspense } from 'react';
 import { queryClient } from '@/lib/query';
-import { QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 type Props = {
   children: React.ReactNode;
