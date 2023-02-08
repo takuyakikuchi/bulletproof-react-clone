@@ -2,6 +2,7 @@ import { Form, InputField } from '@/components/Form';
 import { z } from 'zod';
 import { Button } from '@/components/Elements';
 import { Link } from 'react-router-dom';
+import { useRegister } from '@/lib/auth';
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -18,7 +19,9 @@ export const RegisterForm = () => {
   return (
     <div>
       <Form<RegisterValues, typeof registerSchema>
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {
+          useRegister(values);
+        }}
         schema={registerSchema}
         // TODO: Uncomment when this option is needed.
         // options={{
