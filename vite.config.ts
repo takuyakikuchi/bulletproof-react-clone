@@ -8,5 +8,5 @@ export default defineConfig({
     alias: {
       '@': `${__dirname}/src/`,
     },
-  }
+  },
 })

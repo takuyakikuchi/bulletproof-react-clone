@@ -12,15 +12,15 @@ function handleUserResponse(data: UserResponse) {
   return user;
 }
 
-async function registerFn(data: RegisterCredentials) {
-  const response = await registerWithEmailAndPassword(data);
-  const user = await handleUserResponse(response);
-  return user;
-}
+// async function registerFn(data: RegisterCredentials) {
+//   const response = await registerWithEmailAndPassword(data);
+//   const user = await handleUserResponse(response);
+//   return user;
+// }
 
 export const { useUser, useLogin, useRegister, useLogout } = configureAuth({
   userFn: () => null, // () => api.get('/me'),
   loginFn: () => null, //(credentials) => api.post('/login', credentials),
-  registerFn,
+  registerFn: () => null,
   logoutFn: () => null, //() => api.post('/logout'),
 });

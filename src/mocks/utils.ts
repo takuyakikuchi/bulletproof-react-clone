@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken-esm';
 import { createResponseComposition, context } from 'msw';
 import { db } from './db';
 import omit from 'lodash/omit';
@@ -41,7 +41,7 @@ export const authenticate = ({ email, password }: { email: string; password: str
   if (user?.password === hash(password)) {
     // The password property should be removed before sending the user object to API.
     const sanitizedUser = sanitizeUser(user);
-    const encodedToken = jwt.sign(sanitizedUser, JWT_SECRET);
+    const encodedToken = sign(sanitizedUser, JWT_SECRET);
     return { user: sanitizeUser, jwt: encodedToken}
   }
 

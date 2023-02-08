@@ -16,6 +16,7 @@ Also, I used the latest version of the tools, so there are some differences from
 - Instead of creating the app with "create react app", I used Vite.
 - I added Chromatic to deploy Storybook.
 - Mock related source code is moved from `src/test` to `src/mocks` in order to follow the MSW documentation.
+- `jsonwebtoken` is replaced with `jsonwebtoken-esm` to support ES modules.
 
 ## Functionality
 
@@ -42,7 +43,7 @@ To be updated...
 - Mock API: MSW
 - Data modeling and relation: @mswjs/data 
 - HTTP Client: axios
-- JWT: jsonwebtoken
+- JWT: jsonwebtoken-esm
 - Utility: 
   - clsx: constructing class names conditionally
   - nanoid: generating unique ids
