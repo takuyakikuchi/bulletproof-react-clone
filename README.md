@@ -15,7 +15,7 @@ Also, I used the latest version of the tools, so there are some differences from
 
 - Instead of creating the app with "create react app", I used Vite.
 - I added Chromatic to deploy Storybook.
-- Mock related source code is moved from `src/test` to `src/mocks` in order to follow the MSW documentation.
+- Mock related source code is moved from `src/test` to `src/mocks` following the MSW documentation.
 - `jsonwebtoken` is replaced with `jsonwebtoken-esm` to support ES modules.
 
 ## Functionality

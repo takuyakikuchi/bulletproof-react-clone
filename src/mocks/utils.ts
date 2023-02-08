@@ -29,7 +29,7 @@ export const delayedResponse = createResponseComposition(undefined, [
 const sanitizeUser = (user: any) => omit(user, ['password']);
 
 export const authenticate = ({ email, password }: { email: string; password: string }) => {
-  // TODO: Make it a generic function.
+  // TODO: Move this find function to db.ts.
   const user = db.user.findFirst({
     where: {
       email: {

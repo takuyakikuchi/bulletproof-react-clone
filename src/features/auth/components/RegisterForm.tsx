@@ -23,6 +23,7 @@ export const RegisterForm = () => {
       <Form<RegisterValues, typeof registerSchema>
         onSubmit={(values) => {
           register.mutate(values, {
+            // TODO: Redirect to the home onSuccess.
             onSuccess: () => console.log('registered'),
           });
         }}

@@ -13,12 +13,18 @@ type RegisterBody = {
   // teamName?: string;
 }
 
+/**
+ * To handle a REST API request and return the mocked response.
+ * @see https://mswjs.io/docs/getting-started/mocks/rest-api#request-handler
+ */
 export const handlers = [
+  // TODO: Take this out to an individual file when another handler is added.
   // MSW handles a REST API post request to /auth/register.
   rest.post<RegisterBody>(`${API_URL}/auth/register`, async (req, res, ctx) => {
     try {
       const userObject = await req.json();
 
+      // TODO: Move this find function to db.ts.
       const existingUser = db.user.findFirst({
         where: {
           email: {
@@ -46,7 +52,7 @@ export const handlers = [
 
       const result = await authenticate({email: userObject.email, password: userObject.password});
       
-      return delayedResponse(ctx.json(result));
+      delayedResponse(ctx.json(result));
     } catch (error: unknown) {
       return delayedResponse(
         ctx.status(400),

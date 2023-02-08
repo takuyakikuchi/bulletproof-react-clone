@@ -1,4 +1,5 @@
 const storagePrefix = 'bulletproof_react_clone_';
+const dbName = 'msw-db';
 
 export const storage = {
   getToken: () => {
@@ -10,4 +11,11 @@ export const storage = {
   clearToken: () => {
     window.localStorage.removeItem(`${storagePrefix}token`);
   },
+  getDb: () => {
+    return Object.assign(JSON.parse(window.localStorage.getItem(dbName) || '{}'))
+  },
+  // TODO: Better type for the argument?
+  setDb: (data: any) => {
+    window.localStorage.setItem(dbName, JSON.stringify(data));
+  }
 };

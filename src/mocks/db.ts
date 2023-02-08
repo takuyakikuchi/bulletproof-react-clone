@@ -1,4 +1,10 @@
+/**
+ * A file to create a data modeling and relation for the mock API.
+ * @see https://github.com/mswjs/data
+ */
+
 import { factory, primaryKey } from '@mswjs/data';
+import { storage } from '@/utils/storage';
 
 const models = {
   user: {
@@ -33,7 +39,7 @@ export const persistDb = (model: Model) => {
   const data = loadDb();
 
   data[model] = db[model].getAll();
-  window.localStorage.setItem('msw-db', JSON.stringify(data));
+  storage.setDb(data);
 } 
 
 const initializeDb = () => {

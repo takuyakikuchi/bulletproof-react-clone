@@ -1,3 +1,9 @@
+/**
+ * A file to manage user authentication with react-query-auth.
+ * Export hooks to retrieve the authenticated user, login, register, and logout.
+ * @see https://github.com/alan2207/react-query-auth
+ */
+
 import { configureAuth } from 'react-query-auth';
 import {
   RegisterCredentials,
@@ -6,9 +12,15 @@ import {
 } from '@/features/auth';
 import { storage } from '@/utils/storage';
 
+/**
+ * A function to extract the JWT and user from the API response data,
+ * store the JWT in the storage, and return the user data.
+ */
 function handleUserResponse(data: UserResponse) {
   const { jwt, user } = data;
+
   storage.setToken(jwt);
+
   return user;
 }
 
