@@ -14,6 +14,7 @@ type RegisterBody = {
 }
 
 export const handlers = [
+  // MSW handles a REST API post request to /auth/register.
   rest.post<RegisterBody>(`${API_URL}/auth/register`, async (req, res, ctx) => {
     try {
       const userObject = await req.json();
@@ -30,7 +31,7 @@ export const handlers = [
         throw new Error('User already exists');
       }
 
-      // Creates an user entity with @mswjs/data
+      // Creating an user entity with @mswjs/data.
       db.user.create({
         ...userObject,
         id: nanoid(),
@@ -40,13 +41,17 @@ export const handlers = [
         // role,
       })
 
-      persistDb('user');
+      // Persist the database to local storage.
+      await persistDb('user');
 
-      const result = authenticate({email: userObject.email, password: userObject.password});
-
+      const result = await authenticate({email: userObject.email, password: userObject.password});
+      
       return delayedResponse(ctx.json(result));
-    } catch (error) {
-      // return delayedResponse(ctx.status(400), ctx.json({message: error.message || 'Server Error'}));
+    } catch (error: unknown) {
+      return delayedResponse(
+        ctx.status(400),
+        ctx.json({ message: error || 'Server Error' })
+      );
     }
 
     return res(

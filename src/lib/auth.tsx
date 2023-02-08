@@ -12,15 +12,34 @@ function handleUserResponse(data: UserResponse) {
   return user;
 }
 
-// async function registerFn(data: RegisterCredentials) {
-//   const response = await registerWithEmailAndPassword(data);
-//   const user = await handleUserResponse(response);
-//   return user;
-// }
+async function userFn() {
+  // if (storage.getToken()) {
+  // const data = await getUser();
+  // return data;
+  // }
+  // return null;
+}
+
+async function loginFn() {
+  // const response = await loginWithEmailAndPassword(data);
+  // const user = await handleUserResponse(response);
+  // return user;
+}
+
+async function registerFn(data: RegisterCredentials) {
+  // Make a post request to the mock API.
+  const response = await registerWithEmailAndPassword(data);
+  handleUserResponse(response.data);
+}
+
+async function logoutFn() {
+  // storage.clearToken();
+  // window.location.assign(window.location.origin as unknown as string);
+}
 
 export const { useUser, useLogin, useRegister, useLogout } = configureAuth({
-  userFn: () => null, // () => api.get('/me'),
-  loginFn: () => null, //(credentials) => api.post('/login', credentials),
-  registerFn: () => null,
-  logoutFn: () => null, //() => api.post('/logout'),
+  userFn,
+  loginFn,
+  registerFn,
+  logoutFn,
 });

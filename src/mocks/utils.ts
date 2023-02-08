@@ -1,8 +1,8 @@
-import { sign } from 'jsonwebtoken-esm';
+// import { sign } from 'jsonwebtoken-esm';
 import { createResponseComposition, context } from 'msw';
 import { db } from './db';
 import omit from 'lodash/omit';
-import { JWT_SECRET } from '@/config';
+// import { JWT_SECRET } from '@/config';
 
 /**
  * A function to takes in a string and returns a hash of that string
@@ -41,8 +41,9 @@ export const authenticate = ({ email, password }: { email: string; password: str
   if (user?.password === hash(password)) {
     // The password property should be removed before sending the user object to API.
     const sanitizedUser = sanitizeUser(user);
-    const encodedToken = sign(sanitizedUser, JWT_SECRET);
-    return { user: sanitizeUser, jwt: encodedToken}
+    // TODO: Fix JWT generation.
+    // const encodedToken = sign(sanitizedUser, JWT_SECRET);
+    return { user: sanitizedUser, jwt: 'test'}
   }
 
   throw new Error('Invalid username or password');
