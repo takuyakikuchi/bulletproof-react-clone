@@ -9,6 +9,7 @@ import {
   RegisterCredentials,
   LoginCredentials,
   UserResponse,
+  AuthUser,
   registerWithEmailAndPassword,
   loginWithEmailAndPassword,
 } from '@/features/auth';
@@ -26,23 +27,33 @@ function handleUserResponse(data: UserResponse) {
   return user;
 }
 
+const dummyUser: AuthUser = {
+  firstName: 'test',
+  lastName: 'test',
+  email: 'test',
+  id: 'test',
+};
+
 async function userFn() {
   // if (storage.getToken()) {
-  // const data = await getUser();
-  // return data;
+  //   const data = await getUser();
+  //   return data;
   // }
   // return null;
+  return dummyUser;
 }
 
 async function loginFn(data: LoginCredentials) {
   const response = await loginWithEmailAndPassword(data);
-  handleUserResponse(response.data);
+  const user = handleUserResponse(response.data);
+  return user;
 }
 
 async function registerFn(data: RegisterCredentials) {
   // Make a post request to the mock API.
   const response = await registerWithEmailAndPassword(data);
-  handleUserResponse(response.data);
+  const user = handleUserResponse(response.data);
+  return user;
 }
 
 async function logoutFn() {
@@ -50,7 +61,12 @@ async function logoutFn() {
   // window.location.assign(window.location.origin as unknown as string);
 }
 
-export const { useUser, useLogin, useRegister, useLogout } = configureAuth({
+export const { useUser, useLogin, useRegister, useLogout } = configureAuth<
+  AuthUser,
+  unknown,
+  LoginCredentials,
+  RegisterCredentials
+>({
   userFn,
   loginFn,
   registerFn,

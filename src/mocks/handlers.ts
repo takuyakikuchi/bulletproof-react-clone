@@ -57,32 +57,24 @@ export const handlers = [
 
       const result = await authenticate({email: userObject.email, password: userObject.password});
       
-      delayedResponse(ctx.json(result));
+      return delayedResponse(ctx.json(result));
     } catch (error: unknown) {
       return delayedResponse(
         ctx.status(400),
         ctx.json({ message: error || 'Server Error' })
       );
     }
-
-    return res(
-      ctx.status(200),
-    )
   }),
   rest.post<LoginBody>(`${API_URL}/auth/login`, async(req, res, ctx) => {
     try {
       const userObject = await req.json();
       const result = authenticate(userObject);
-      delayedResponse(ctx.json(result));
+      return delayedResponse(ctx.json(result));
     } catch (error: unknown) {
       return delayedResponse(
         ctx.status(400),
         ctx.json({ message: error || 'Server Error' })
       );
     }
-
-    return res(
-      ctx.status(200),
-    )
   }),
 ]
