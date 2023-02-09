@@ -12,6 +12,7 @@ import {
   AuthUser,
   registerWithEmailAndPassword,
   loginWithEmailAndPassword,
+  getUser,
 } from '@/features/auth';
 import { storage } from '@/utils/storage';
 
@@ -27,32 +28,24 @@ function handleUserResponse(data: UserResponse) {
   return user;
 }
 
-const dummyUser: AuthUser = {
-  firstName: 'test',
-  lastName: 'test',
-  email: 'test',
-  id: 'test',
-};
-
 async function userFn() {
-  // if (storage.getToken()) {
-  //   const data = await getUser();
-  //   return data;
-  // }
-  // return null;
-  return dummyUser;
+  if (storage.getToken()) {
+    const response = await getUser();
+    return response.data;
+  }
+  return null;
 }
 
 async function loginFn(data: LoginCredentials) {
   const response = await loginWithEmailAndPassword(data);
-  const user = handleUserResponse(response.data);
+  const user = await handleUserResponse(response.data);
   return user;
 }
 
 async function registerFn(data: RegisterCredentials) {
   // Make a post request to the mock API.
   const response = await registerWithEmailAndPassword(data);
-  const user = handleUserResponse(response.data);
+  const user = await handleUserResponse(response.data);
   return user;
 }
 
@@ -71,4 +64,5 @@ export const { useUser, useLogin, useRegister, useLogout } = configureAuth<
   loginFn,
   registerFn,
   logoutFn,
+  // TODO: LoaderComponent
 });

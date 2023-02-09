@@ -1,8 +1,10 @@
-// import { sign } from 'jsonwebtoken-esm';
-import { createResponseComposition, context } from 'msw';
+/**
+ * Utility functions for mock BE API.
+ */
+
+import { createResponseComposition, context, RestRequest } from 'msw';
 import { db } from './db';
 import omit from 'lodash/omit';
-// import { JWT_SECRET } from '@/config';
 
 /**
  * A function to takes in a string and returns a hash of that string
@@ -42,9 +44,38 @@ export const authenticate = ({ email, password }: { email: string; password: str
     // The password property should be removed before sending the user object to API.
     const sanitizedUser = sanitizeUser(user);
     // TODO: Fix JWT generation.
-    // const encodedToken = sign(sanitizedUser, JWT_SECRET);
-    return { user: sanitizedUser, jwt: 'test'}
+    const encodedToken = user.id
+    
+    return { user: sanitizedUser, jwt: encodedToken}
   }
 
   throw new Error('Invalid username or password');
 }
+
+export const requireAuth = (request: RestRequest) => {
+  try {
+    const encodedToken = request.headers.get('authorization');
+    if (!encodedToken) {
+      throw new Error('No authorization token provided.');
+    }
+    // TODO: Implement JWT verification.
+    // const decodedToken = verify(encodedToken, JWT_SECRET);
+
+    const user = db.user.findFirst({
+      where: {
+        id: {
+          equals: encodedToken,
+        }
+      }
+    })
+
+    if (!user) {
+      throw new Error('Unauthorized');
+    }
+
+    return sanitizeUser(user);
+  } catch(error) {
+    throw new Error();
+  }
+};
+
