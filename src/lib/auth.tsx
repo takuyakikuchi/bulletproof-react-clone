@@ -15,6 +15,7 @@ import {
   getUser,
 } from '@/features/auth';
 import { storage } from '@/utils/storage';
+import { goToOrigin } from '@/utils/location';
 
 /**
  * A function to extract the JWT and user from the API response data,
@@ -50,8 +51,8 @@ async function registerFn(data: RegisterCredentials) {
 }
 
 async function logoutFn() {
-  // storage.clearToken();
-  // window.location.assign(window.location.origin as unknown as string);
+  storage.clearToken();
+  goToOrigin();
 }
 
 export const { useUser, useLogin, useRegister, useLogout, AuthLoader } =

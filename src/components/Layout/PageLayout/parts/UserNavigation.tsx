@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Menu, Transition } from '@headlessui/react';
 import { UserIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import { useLogout } from '@/lib/auth';
 
 type UserNavigationItem = {
   name: string;
@@ -10,10 +11,12 @@ type UserNavigationItem = {
 };
 
 export const UserNavigation = () => {
+  const logout = useLogout().mutate;
+
   const userNavigation: UserNavigationItem[] = [
     // TODO: Uncomment when profile page is ready.
     // { name: 'Your Profile', to: './profile' },
-    { name: 'Sign out', to: '', onClick: () => null },
+    { name: 'Sign out', to: '', onClick: () => logout({}) },
   ];
 
   return (
