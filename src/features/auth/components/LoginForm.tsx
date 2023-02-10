@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import { loginSchema, LoginCredentials } from '../types';
 import { useLogin } from '@/lib/auth';
 
-export const LoginForm = () => {
+type Props = {
+  onSuccess: () => void;
+};
+
+export const LoginForm = ({ onSuccess }: Props) => {
   const login = useLogin();
 
   return (
@@ -12,8 +16,7 @@ export const LoginForm = () => {
       <Form<LoginCredentials, typeof loginSchema>
         onSubmit={(values) => {
           login.mutate(values, {
-            // TODO: Redirect to the home onSuccess.
-            onSuccess: () => console.log('logged in'),
+            onSuccess,
           });
         }}
         schema={loginSchema}
