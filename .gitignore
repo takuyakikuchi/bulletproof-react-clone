@@ -25,3 +25,4 @@ dist-ssr
 
 storybook-static
 .env
+public/tailwind.css
