@@ -7,8 +7,12 @@
 import { configureAuth } from 'react-query-auth';
 import {
   RegisterCredentials,
+  LoginCredentials,
   UserResponse,
+  AuthUser,
   registerWithEmailAndPassword,
+  loginWithEmailAndPassword,
+  getUser,
 } from '@/features/auth';
 import { storage } from '@/utils/storage';
 
@@ -25,23 +29,24 @@ function handleUserResponse(data: UserResponse) {
 }
 
 async function userFn() {
-  // if (storage.getToken()) {
-  // const data = await getUser();
-  // return data;
-  // }
-  // return null;
+  if (storage.getToken()) {
+    const response = await getUser();
+    return response.data;
+  }
+  return null;
 }
 
-async function loginFn() {
-  // const response = await loginWithEmailAndPassword(data);
-  // const user = await handleUserResponse(response);
-  // return user;
+async function loginFn(data: LoginCredentials) {
+  const response = await loginWithEmailAndPassword(data);
+  const user = await handleUserResponse(response.data);
+  return user;
 }
 
 async function registerFn(data: RegisterCredentials) {
   // Make a post request to the mock API.
   const response = await registerWithEmailAndPassword(data);
-  handleUserResponse(response.data);
+  const user = await handleUserResponse(response.data);
+  return user;
 }
 
 async function logoutFn() {
@@ -49,9 +54,10 @@ async function logoutFn() {
   // window.location.assign(window.location.origin as unknown as string);
 }
 
-export const { useUser, useLogin, useRegister, useLogout } = configureAuth({
-  userFn,
-  loginFn,
-  registerFn,
-  logoutFn,
-});
+export const { useUser, useLogin, useRegister, useLogout, AuthLoader } =
+  configureAuth<AuthUser, unknown, LoginCredentials, RegisterCredentials>({
+    userFn,
+    loginFn,
+    registerFn,
+    logoutFn,
+  });

@@ -1,16 +1,19 @@
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '@/lib/auth';
 
 /**
- * A hook to navigate to the start page.
- * @returns {() => void} A function that navigates to the start page.(Login or Landing)
+ * A hook to navigate to the start page depending on the user's authentication status.
  */
 export const useNavigateToStart = () => {
   const navigate = useNavigate();
+  const user = useUser().data;
 
   const navigateToStart = () => {
-    // TODO: Only authenticated user is navigated to the app.
-    // navigate('/app');
-    navigate('/auth/login');
+    if (user) {
+      navigate('/app');
+    } else {
+      navigate('/auth/login');
+    }
   };
 
   return navigateToStart;

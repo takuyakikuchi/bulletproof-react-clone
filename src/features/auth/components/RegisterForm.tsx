@@ -1,30 +1,22 @@
 import { Form, InputField } from '@/components/Form';
-import { z } from 'zod';
 import { Button } from '@/components/Elements';
 import { Link } from 'react-router-dom';
+import { registerSchema, RegisterCredentials } from '../types';
 import { useRegister } from '@/lib/auth';
 
-const registerSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-  firstName: z.string(),
-  lastName: z.string(),
-  // teamId: z.string().optional(),
-  // teamName: z.string().optional(),
-});
+type Props = {
+  onSuccess: () => void;
+};
 
-type RegisterValues = z.infer<typeof registerSchema>;
-
-export const RegisterForm = () => {
-  const register = useRegister();
+export const RegisterForm = ({ onSuccess }: Props) => {
+  const registerUser = useRegister();
 
   return (
     <div>
-      <Form<RegisterValues, typeof registerSchema>
+      <Form<RegisterCredentials, typeof registerSchema>
         onSubmit={(values) => {
-          register.mutate(values, {
-            // TODO: Redirect to the home onSuccess.
-            onSuccess: () => console.log('registered'),
+          registerUser.mutate(values, {
+            onSuccess,
           });
         }}
         schema={registerSchema}
