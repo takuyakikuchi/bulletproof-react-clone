@@ -54,15 +54,10 @@ async function logoutFn() {
   // window.location.assign(window.location.origin as unknown as string);
 }
 
-export const { useUser, useLogin, useRegister, useLogout } = configureAuth<
-  AuthUser,
-  unknown,
-  LoginCredentials,
-  RegisterCredentials
->({
-  userFn,
-  loginFn,
-  registerFn,
-  logoutFn,
-  // TODO: LoaderComponent
-});
+export const { useUser, useLogin, useRegister, useLogout, AuthLoader } =
+  configureAuth<AuthUser, unknown, LoginCredentials, RegisterCredentials>({
+    userFn,
+    loginFn,
+    registerFn,
+    logoutFn,
+  });
