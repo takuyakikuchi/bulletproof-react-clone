@@ -38,6 +38,7 @@ To be updated...
 - Storybook
 - Test:
   - Vitest
+  - React Testing Library
   - VRT: Chromatic
 - Authentication Helper: react-query-auth
 - Data Fetching: react-query

@@ -14,5 +14,6 @@ export default defineConfig({
   // https://vitest.dev/config/#globals
   test: {
     globals: true,
+    environment: 'happy-dom',
   }
 })
