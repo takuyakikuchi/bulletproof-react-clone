@@ -18,6 +18,7 @@ export const InputField = ({
   return (
     <FieldWrapper label={label} error={error}>
       <input
+        id={label}
         type={type}
         className={clsx(
           // appearance-none to reset any browser specific styling on an element.
