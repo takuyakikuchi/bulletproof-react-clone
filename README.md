@@ -15,6 +15,8 @@ Also, I used the latest version of the tools, so there are some differences from
 
 - Instead of creating the app with "create react app", I used Vite.
 - I added Chromatic to deploy Storybook.
+- Mock related source code is moved from `src/test` to `src/mocks` following the MSW documentation.
+- `jsonwebtoken` is replaced with `jsonwebtoken-esm` to support ES modules.
 
 ## Functionality
 
@@ -22,7 +24,7 @@ To be updated...
 
 ## Tech Selection
 
-- Build tool: Vite
+- Build: Vite
 - Language: TypeScript
 - Framework: React
 - Package manager: Yarn
@@ -32,10 +34,18 @@ To be updated...
 - Style: Tailwind CSS
 - UI library: Headless UI
 - Router: React Router
-- Icon library: Heroicons
-- Utility library: 
-  - clsx
+- Icons: Heroicons
 - Storybook
 - Test:
   - VRT: Chromatic
-
+- Authentication Helper: react-query-auth
+- Data Fetching: react-query
+- Mock API: MSW
+- Data modeling and relation: @mswjs/data 
+- HTTP Client: axios
+- JWT: jsonwebtoken-esm
+- Utility: 
+  - clsx: constructing class names conditionally
+  - nanoid: generating unique ids
+  - lodash
+  - 
