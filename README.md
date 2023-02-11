@@ -16,7 +16,7 @@ Also, I used the latest version of the tools, so there are some differences from
 - Instead of creating the app with "create react app", I used Vite.
 - I added Chromatic to deploy Storybook.
 - Mock related source code is moved from `src/test` to `src/mocks` following the MSW documentation.
-- `jsonwebtoken` is replaced with `jsonwebtoken-esm` to support ES modules.
+- I use Vitest instead of Jest for testing.
 
 ## Functionality
 
@@ -37,6 +37,7 @@ To be updated...
 - Icons: Heroicons
 - Storybook
 - Test:
+  - Vitest
   - VRT: Chromatic
 - Authentication Helper: react-query-auth
 - Data Fetching: react-query
