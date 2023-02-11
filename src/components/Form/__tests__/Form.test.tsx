@@ -43,3 +43,34 @@ it('should render and submit a basic Form component', async () => {
     expect(handleSubmit).toHaveBeenCalledWith(testData, expect.anything())
   );
 });
+
+it('should fail submission if valiation fails', async () => {
+  const user = userEvent.setup();
+  const handleSubmit = vi.fn();
+
+  await render(
+    <Form<typeof testData, typeof schema>
+      onSubmit={handleSubmit}
+      schema={schema}
+      id="my-form"
+    >
+      {({ register, formState }) => (
+        <>
+          <InputField
+            label="Title"
+            error={formState.errors.title}
+            registration={register('title')}
+          />
+
+          <Button name="submit" type="submit" className="w-full">
+            Submit
+          </Button>
+        </>
+      )}
+    </Form>
+  );
+
+  await user.click(screen.getByRole('button', { name: /submit/i }));
+  screen.findByRole(/alert/i), { name: /required/i };
+  expect(handleSubmit).not.toHaveBeenCalled();
+});
