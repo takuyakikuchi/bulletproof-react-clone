@@ -23,6 +23,7 @@ export const FieldWrapper = ({
     <div>
       <label
         className={clsx('block text-sm font-medium text-gray-700', className)}
+        htmlFor={label}
       >
         {label}
         <div className="mt-1">{children}</div>

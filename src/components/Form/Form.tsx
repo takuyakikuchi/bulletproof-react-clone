@@ -4,7 +4,7 @@ import { ZodTypeDef, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 type Props<TFormValues extends FieldValues, Schema> = {
-  // id?: string;
+  id?: string;
   className?: string;
   // TODO: Type onSubmit.
   onSubmit: (values: TFormValues) => void;
@@ -20,7 +20,7 @@ export const Form = <
     unknown
   >
 >({
-  // id,
+  id,
   className = '',
   onSubmit,
   schema,
@@ -33,9 +33,8 @@ export const Form = <
   return (
     <form
       className={clsx('space-y-6', className)}
-      // TODO: onSubmit
       onSubmit={methods.handleSubmit(onSubmit)}
-      // id={id}
+      id={id}
     >
       {children(methods)}
     </form>
