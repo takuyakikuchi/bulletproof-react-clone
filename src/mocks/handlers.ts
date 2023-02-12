@@ -48,8 +48,8 @@ export const handlers = [
         id: nanoid(),
         createdAt: Date.now(),
         password: hash(userObject.password),
+        role: 'ADMIN',
         // teamId,
-        // role,
       })
 
       // Persist the database to local storage.
