@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { PageLayout } from '@/components/Layout';
+import { Dashboard } from '@/features/misc';
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ export const protectedRoutes = [
     children: [
       {
         path: '',
-        element: <div>Dashboard</div>,
+        element: <Dashboard />,
       },
       {
         path: 'discussions',
