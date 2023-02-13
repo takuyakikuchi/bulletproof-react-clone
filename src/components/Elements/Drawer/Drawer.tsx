@@ -11,7 +11,7 @@ const SIZES = {
   full: 'max-w-full',
 } as const;
 
-type Props = {
+export type DrawerProps = {
   isOpen: boolean;
   title: string;
   size?: keyof typeof SIZES;
@@ -27,7 +27,7 @@ export const Drawer = ({
   onClose,
   children,
   footer,
-}: Props) => {
+}: DrawerProps) => {
   return (
     <Transition
       show={isOpen}

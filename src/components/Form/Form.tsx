@@ -1,5 +1,10 @@
 import clsx from 'clsx';
-import { useForm, UseFormReturn, FieldValues } from 'react-hook-form';
+import {
+  useForm,
+  UseFormReturn,
+  FieldValues,
+  UseFormProps,
+} from 'react-hook-form';
 import { ZodTypeDef, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -10,6 +15,7 @@ type Props<TFormValues extends FieldValues, Schema> = {
   onSubmit: (values: TFormValues) => void;
   schema: Schema;
   children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;
+  options?: UseFormProps<TFormValues>;
 };
 
 export const Form = <
@@ -25,8 +31,10 @@ export const Form = <
   onSubmit,
   schema,
   children,
+  options,
 }: Props<TFormValues, Schema>) => {
   const methods = useForm<TFormValues>({
+    ...options,
     resolver: zodResolver(schema),
   });
 

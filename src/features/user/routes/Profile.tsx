@@ -1,6 +1,4 @@
-import { Button } from '@/components/Elements';
 import { ContentLayout } from '@/components/Layout';
-import { PencilIcon } from '@heroicons/react/20/solid';
 import { UpdateProfile } from '../components';
 
 const Entry = ({ label, value }: { label: string; value: string }) => (
@@ -21,10 +19,6 @@ export const Profile = () => {
             <h3 className="text-lg leading-6 font-medium text-gray-900">
               User Information
             </h3>
-            {/* TODO: Make it an individual component */}
-            <Button startIcon={<PencilIcon className="h-4 w-4" />} size="sm">
-              Update Profile
-            </Button>
             <UpdateProfile />
           </div>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
