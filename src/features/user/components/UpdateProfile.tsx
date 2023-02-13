@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { Button } from '@/components/Elements';
 import { PencilIcon } from '@heroicons/react/20/solid';
-import { Form, FormDrawer, InputField } from '@/components/Form';
+import { Form, FormDrawer, InputField, TextAreaField } from '@/components/Form';
 import { useDisclosure } from '@/hooks/useDisclosure';
 
 const schema = z.object({
@@ -62,7 +62,11 @@ export const UpdateProfile = () => {
               error={formState.errors.email}
               registration={register('email')}
             />
-            {/* TODO: TextAreaField */}
+            <TextAreaField
+              label="Bio"
+              error={formState.errors.bio}
+              registration={register('bio')}
+            />
           </>
         )}
       </Form>
