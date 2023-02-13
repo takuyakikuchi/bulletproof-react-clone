@@ -1,5 +1,6 @@
 import { Button } from '@/components/Elements';
 import { ContentLayout } from '@/components/Layout';
+import { PencilIcon } from '@heroicons/react/20/solid';
 
 const Entry = ({ label, value }: { label: string; value: string }) => (
   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -20,7 +21,9 @@ export const Profile = () => {
               User Information
             </h3>
             {/* TODO: Make it an individual component */}
-            <Button>Update Profile</Button>
+            <Button startIcon={<PencilIcon className="h-4 w-4" />} size="sm">
+              Update Profile
+            </Button>
           </div>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
             Personal details of the user.
