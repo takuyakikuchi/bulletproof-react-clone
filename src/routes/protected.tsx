@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import { PageLayout } from '@/components/Layout';
-import { Dashboard } from '@/features/misc';
 import { namedLazyImport } from '@/utils/namedLazyImport';
 
-const { Profile } = namedLazyImport(
-  () => import('@/features/user/routes/Profile'),
-  'Profile'
+const { Dashboard } = namedLazyImport(
+  () => import('@/features/misc'),
+  'Dashboard'
 );
+const { Profile } = namedLazyImport(() => import('@/features/user'), 'Profile');
 
 const App = () => {
   return (
