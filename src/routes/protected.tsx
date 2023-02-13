@@ -29,6 +29,10 @@ export const protectedRoutes = [
         path: 'users',
         element: <div>Users</div>,
       },
+      {
+        path: 'profile',
+        element: <div>Profile</div>,
+      },
     ],
   },
 ];
