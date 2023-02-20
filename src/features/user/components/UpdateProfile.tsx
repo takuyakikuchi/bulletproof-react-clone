@@ -3,6 +3,7 @@ import { Button } from '@/components/Elements';
 import { PencilIcon } from '@heroicons/react/20/solid';
 import { Form, FormDrawer, InputField, TextAreaField } from '@/components/Form';
 import { useDisclosure } from '@/hooks/useDisclosure';
+import { useUser } from '@/lib/auth';
 
 const schema = z.object({
   email: z.string().email(),
@@ -13,6 +14,8 @@ const schema = z.object({
 type Schema = z.infer<typeof schema>;
 
 export const UpdateProfile = () => {
+  const user = useUser().data;
+
   const { isOpen, open, close } = useDisclosure();
 
   return (
@@ -38,10 +41,10 @@ export const UpdateProfile = () => {
         onSubmit={() => null}
         options={{
           defaultValues: {
-            firstName: 'Takuya',
-            lastName: 'Kikuchi',
-            email: 'test@gmail.com',
-            bio: '',
+            firstName: user?.firstName,
+            lastName: user?.lastName,
+            email: user?.email,
+            bio: user?.bio,
           },
         }}
       >
