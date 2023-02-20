@@ -36,7 +36,7 @@ export const Profile = () => {
             <Entry label="Last Name" value={user.lastName} />
             <Entry label="Email Address" value={user.email} />
             <Entry label="Role" value={user.role} />
-            <Entry label="Bio" value="" />
+            <Entry label="Bio" value={user.bio} />
           </dl>
         </div>
       </div>

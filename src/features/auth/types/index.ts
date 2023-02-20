@@ -24,7 +24,7 @@ export type AuthUser = {
   firstName: string;
   lastName: string;
   role: 'ADMIN' | 'USER';
-  // bio: string;
+  bio: string;
 };
 
 export type UserResponse = {
