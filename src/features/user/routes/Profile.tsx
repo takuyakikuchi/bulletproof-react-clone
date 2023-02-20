@@ -1,5 +1,6 @@
 import { ContentLayout } from '@/components/Layout';
 import { UpdateProfile } from '../components';
+import { useUser } from '@/lib/auth';
 
 const Entry = ({ label, value }: { label: string; value: string }) => (
   <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -11,6 +12,10 @@ const Entry = ({ label, value }: { label: string; value: string }) => (
 );
 
 export const Profile = () => {
+  const user = useUser().data;
+
+  if (!user) return null;
+
   return (
     <ContentLayout title="Profile">
       <div className="bg-white shadown overflow-hidden sm:rounded-lg">
@@ -27,10 +32,10 @@ export const Profile = () => {
         </div>
         <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
           <dl className="sm:divide-y sm:divide-gray-200">
-            <Entry label="First Name" value="Takuya" />
-            <Entry label="Last Name" value="Kikuchi" />
-            <Entry label="Email Address" value="test@gmail.com" />
-            <Entry label="Role" value="ADMIN" />
+            <Entry label="First Name" value={user.firstName} />
+            <Entry label="Last Name" value={user.lastName} />
+            <Entry label="Email Address" value={user.email} />
+            <Entry label="Role" value={user.role} />
             <Entry label="Bio" value="" />
           </dl>
         </div>
