@@ -1,10 +1,11 @@
-import { Form, InputField } from '@/components/Form';
+import { Form, InputField, TextAreaField } from '@/components/Form';
 import { z } from 'zod';
 import { Button } from '@/components/Elements';
 
 const schema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
+  notes: z.string().optional(),
 });
 
 type Schema = z.infer<typeof schema>;
@@ -26,6 +27,11 @@ const FormSample = () => {
             label="Password"
             error={formState.errors.password}
             registration={register('password')}
+          />
+          <TextAreaField
+            label="Notes"
+            error={formState.errors.notes}
+            registration={register('notes')}
           />
           <div>
             <Button type="submit" className="w-full">

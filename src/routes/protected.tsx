@@ -1,6 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import { PageLayout } from '@/components/Layout';
-import { Dashboard } from '@/features/misc';
+import { namedLazyImport } from '@/utils/namedLazyImport';
+
+const { Dashboard } = namedLazyImport(
+  () => import('@/features/misc'),
+  'Dashboard'
+);
+const { Profile } = namedLazyImport(() => import('@/features/user'), 'Profile');
 
 const App = () => {
   return (
@@ -28,6 +34,10 @@ export const protectedRoutes = [
       {
         path: 'users',
         element: <div>Users</div>,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
       },
     ],
   },

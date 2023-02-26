@@ -14,8 +14,7 @@ export const UserNavigation = () => {
   const logout = useLogout().mutate;
 
   const userNavigation: UserNavigationItem[] = [
-    // TODO: Uncomment when profile page is ready.
-    // { name: 'Your Profile', to: './profile' },
+    { name: 'Your Profile', to: './profile' },
     { name: 'Sign out', to: '', onClick: () => logout({}) },
   ];
 

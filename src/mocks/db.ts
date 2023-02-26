@@ -15,7 +15,7 @@ const models = {
     password: String,
     role: String,
     // teamId: String,
-    // bio: String,
+    bio: String,
     createdAt: Number,
   },
 }
