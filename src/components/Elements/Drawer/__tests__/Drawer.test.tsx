@@ -7,6 +7,7 @@ import userEvent from '@testing-library/user-event';
 /**
  * Mock the IntersectionObserver API
  * @see https://vitest.dev/guide/mocking.html#globals
+ * ? This mock should be moved to a global setup file?
  */
 const IntersectionObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),
@@ -39,19 +40,38 @@ const TestDrawer = () => {
   );
 }
 
-test('Drawer should handle open and close user actions', async () => {
-  const user = userEvent.setup();
-  render(<TestDrawer />);
+describe('Drawer', () => {
+  it('should not render Drawer at first', () => {
+    // Arrange
+    render(<TestDrawer />);    
 
-  // By default, the drawer should be closed
-  expect(screen.queryByText('Test Drawer')).not.toBeInTheDocument();
+    // Assert
+    expect(screen.queryByText('Test Drawer')).not.toBeInTheDocument();
+  });
 
-  // After clicking on the open button, the drawer should be open.
-  await user.click(screen.getByRole('button', { name: /open drawer/i }));
-  expect(screen.queryByText('Test Drawer')).toBeInTheDocument();
+  it('should render Drawer after clicking on the open button', async () => {
+    // Arrange
+    const user = userEvent.setup();
+    render(<TestDrawer />);
 
-  // After clicking on the cancel button, the drawer should be open.
-  await user.click(screen.getByRole('button', { name: /cancel/i }));
-  expect(screen.queryByText('Test Drawer')).not.toBeInTheDocument();
+    // Act
+    await user.click(screen.getByRole('button', { name: /open drawer/i }));
+
+    // Assert
+    expect(screen.queryByText('Test Drawer')).toBeInTheDocument();
+  });
+
+  it('should close the drawer after clicking on the cancel button', async () => {
+    // Arrange
+    const user = userEvent.setup();
+    render(<TestDrawer />);
+    await user.click(screen.getByRole('button', { name: /open drawer/i }));
+
+    // Act
+    await user.click(screen.getByRole('button', { name: /cancel/i }));
+
+    // Assert
+    expect(screen.queryByText('Test Drawer')).not.toBeInTheDocument();
+  });
 });
 
